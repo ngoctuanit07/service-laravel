@@ -8,6 +8,6 @@ class Craw extends Model {
     //
     protected $table = 'craw';
     protected $fillable = [
-        'title', 'content', 'featured_image', 'cat_id' ,
+        'title', 'content', 'featured_image', 'cat_id','user_id' ,
     ];
 }

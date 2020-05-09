@@ -116,6 +116,58 @@
                 </li>
             </ul>
             @endrole
+            @role('user')
+             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                 <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>
+                            User
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        {{-- <li class="nav-item">
+                            <a href="pages/examples/login.html" class="nav-link">
+                                <i class="fas fa-user-plus nav-icon"></i>
+                                <p>Add user</p>
+                            </a>
+                        </li> --}}
+
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                <i class="nav-icon fas fa-sign-out-alt"></i>
+
+                                <p> {{ __('Logout') }}</p>
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </li>
+
+                    </ul>
+                </li>
+                 <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-user-tag"></i>
+                        <p>
+                            Craw
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('craw.index') }}" class="nav-link">
+                                <i class="fas fa-list-ul nav-icon"></i>
+                                <p>List Craw Data</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+             @endrole
 
         </nav>
         <!-- /.sidebar-menu -->

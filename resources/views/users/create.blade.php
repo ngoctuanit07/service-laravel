@@ -39,6 +39,18 @@
                 {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
             </div>
         </div>
+         <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Website Wordpress:</strong>
+                {!! Form::text('website', null, array('placeholder' => 'Website Wordpress','class' => 'form-control')) !!}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Token Wordpress:</strong>
+                {!! Form::text('token', null, array('placeholder' => 'Token Wordpress','class' => 'form-control')) !!}
+            </div>
+        </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Password:</strong>

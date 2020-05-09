@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Craw;
 use Symfony\Component\DomCrawler\Crawler;
+use DB;
 use GuzzleHttp\Client;
 
 class ContentCraw extends Command {
@@ -37,7 +38,9 @@ class ContentCraw extends Command {
         $this->client = new Client( [
             'timeout' => 1000,
             'verify' => false,
-            'proxy' => 'http://114.106.151.212:38801/'
+            'request.options' => [
+                'proxy' => 'tcp://113.160.234.147:47469',
+            ],
         ] );
     }
 
@@ -49,19 +52,19 @@ class ContentCraw extends Command {
 
     public function handle() {
         //
-        $xml = simplexml_load_file( 'https://monngon365.net/post-sitemap1.xml' );
+        $xml = simplexml_load_file( 'https://hocwordpress.vn/post-sitemap.xml' );
         foreach ( $xml as $name ) {
-            if ( $name->loc == 'https://monngon365.net/' ) {
+            if ( $name->loc == 'https://hocwordpress.vn/' ) {
                 continue;
             } else {
-                $parentContent = '.td-ss-main-content';
-                $title = '.entry-title';
-                $content = '.td-post-content';
-                $featured_image = '.td-post-content p img';
-                // $parentContent = '.content-box-news';
-                // $title = '.single-title';
-                // $content = '.post-content';
-                // $featured_image = '.post-content p img';
+                // $parentContent = '.td-ss-main-content';
+                // $title = '.entry-title';
+                // $content = '.td-post-content';
+                // $featured_image = '.td-post-content p img';
+                $parentContent = '.content-box-news';
+                $title = '.single-title';
+                $content = '.post-content';
+                $featured_image = '.post-content p img';
                 // $parentContent = '.type-post';
                 // $title = '.entry-title';
                 // $content = '.entry-content';
@@ -72,8 +75,14 @@ class ContentCraw extends Command {
                 //   dd( array_filter( $resultData ) );
                 foreach ( $resultData as $key => $data ) {
                     if ( isset( $data['title'] ) && $data['title'] && isset( $data['content'] ) && $data['content']  && isset( $data['featured_image'] ) && $data['featured_image'] ) {
-                        Craw::create( ['title' => $data['title'], 'content' => $data['content'], 'featured_image' => $data['featured_image'],  'cat_id' => 2] );
-                        sleep( 60 );
+                        $crawDataCheck = DB::table( 'craw' )->where( 'title', $data['title'] )->first();
+                        if ( $crawDataCheck  && isset( $crawDataCheck ) ) {
+                            break;
+                        } else {
+                            Craw::create( ['title' => $data['title'], 'content' => $data['content'], 'featured_image' => $data['featured_image'],  'cat_id' => 2] );
+                            sleep( 60 );
+                        }
+
                     }
                 }
 

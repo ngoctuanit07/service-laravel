@@ -5,3 +5,16 @@
 .pull-right {
     margin-bottom: 1%;
 }
+.login-page, .register-page {
+    -ms-flex-align: center;
+    align-items: center;
+    background: none !important;
+    background-image: url('0cFvKO.jpg') !important;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    height: 100vh;
+    -ms-flex-pack: center;
+    justify-content: center;
+}

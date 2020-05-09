@@ -28,3 +28,8 @@ Route::group(['middleware' => ['auth','role:admin']], function () {
     Route::resource('admin/permission','PermissionController');
 	Route::get('admin/dashboard','Admin\DashboardController@index')->name('admin.dashboard');
 });
+Route::group(['middleware' => ['auth','role:user']], function () {
+    Route::post('admin/dongbo/{id}','CrawController@dongbo')->name('admin.dongbo');
+    Route::resource('admin/craw','CrawController');
+	Route::get('admin/dashboard','Admin\DashboardController@index')->name('admin.dashboard');
+});
