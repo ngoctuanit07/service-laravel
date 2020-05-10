@@ -31,5 +31,5 @@ Route::group(['middleware' => ['auth','role:admin']], function () {
 Route::group(['middleware' => ['auth','role:user']], function () {
     Route::post('admin/dongbo/{id}','CrawController@dongbo')->name('admin.dongbo');
     Route::resource('admin/craw','CrawController');
-	Route::get('admin/dashboard','Admin\DashboardController@index')->name('admin.dashboard');
+	Route::get('admin/home','DashboardController@index')->name('home.dashboard');
 });
