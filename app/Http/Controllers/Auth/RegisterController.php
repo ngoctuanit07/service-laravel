@@ -70,4 +70,13 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+    protected function authenticated()
+    {
+        $user = auth()->user();
+        if ($user->hasAnyRole('admin')) {
+            return redirect(route('admin.dashboard'));
+        }
+
+        return redirect(route('home.dashboard'));
+    }
 }

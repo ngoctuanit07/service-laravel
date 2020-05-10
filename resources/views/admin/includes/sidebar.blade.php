@@ -1,8 +1,8 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="{{ route('admin.dashboard') }}" class="brand-link">
         <img src="{{asset('backend/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">AdminLTE 3</span>
+        <span class="brand-text font-weight-light">John Nguyen System</span>
     </a>
 
     <!-- Sidebar -->
@@ -36,7 +36,12 @@
                                 <p>Add user</p>
                             </a>
                         </li> --}}
-
+                        <li class="nav-item has-treeview">
+                            <a href="{{ route('profile.index') }}" class="nav-link">
+                                <i class="fas fa-list-ul nav-icon"></i>
+                                <p>Profile</p>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a href="{{ route('users.index') }}" class="nav-link">
                                 <i class="fas fa-list-ul nav-icon"></i>
@@ -97,7 +102,7 @@
                         </li>
                     </ul>
                 </li>
-                 <li class="nav-item has-treeview">
+                <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-user-tag"></i>
                         <p>
@@ -114,11 +119,17 @@
                         </li>
                     </ul>
                 </li>
+                {{-- <li class="nav-item has-treeview">
+                    <a href="{{ route('document.index') }}" class="nav-link">
+                        <i class="fas fa-list-ul nav-icon"></i>
+                        <p>Document setup tool</p>
+                    </a>
+                </li> --}}
             </ul>
             @endrole
             @role('user')
-             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                 <li class="nav-item has-treeview">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
@@ -134,7 +145,12 @@
                             </a>
                         </li> --}}
 
-
+                        <li class="nav-item has-treeview">
+                            <a href="{{ route('profile.index') }}" class="nav-link">
+                                <i class="fas fa-list-ul nav-icon"></i>
+                                <p>Profile</p>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -149,7 +165,7 @@
 
                     </ul>
                 </li>
-                 <li class="nav-item has-treeview">
+                <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-user-tag"></i>
                         <p>
@@ -166,8 +182,14 @@
                         </li>
                     </ul>
                 </li>
+                <li class="nav-item has-treeview">
+                    <a href="{{ route('document.index') }}" class="nav-link">
+                        <i class="fas fa-list-ul nav-icon"></i>
+                        <p>Document setup tool</p>
+                    </a>
+                </li>
             </ul>
-             @endrole
+            @endrole
 
         </nav>
         <!-- /.sidebar-menu -->
