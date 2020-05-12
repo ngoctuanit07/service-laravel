@@ -112,9 +112,17 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
+                            <a href="{{ route('config.index') }}" class="nav-link">
+                                <i class="fas fa-list-ul nav-icon"></i>
+                                <p>Config Craw Auto</p>
+                            </a>
                             <a href="{{ route('craw.index') }}" class="nav-link">
                                 <i class="fas fa-list-ul nav-icon"></i>
                                 <p>List Craw Data</p>
+                            </a>
+                            <a href="{{ route('crawcat.index') }}" class="nav-link">
+                                <i class="fas fa-list-ul nav-icon"></i>
+                                <p>CrawCat Data</p>
                             </a>
                         </li>
                     </ul>

@@ -93,8 +93,9 @@ class CrawController extends Controller {
         $user = Auth::user();
         $userId = $user->id;
         $resultDatas = $this->getCrawlerContent( $url, $contentfull, $title, $content, $featured_image );
+      
         foreach ( $resultDatas as $data ) {
-            if ( isset( $data['title'] ) && $data['title'] && isset( $data['content'] ) && $data['content'] && isset( $data['featured_image'] ) && $data['featured_image'] ) {
+            if ( isset( $data['title'] ) && $data['title'] && isset( $data['content'] ) && $data['content'] ) {
                 Craw::create( ['title' => $data['title'], 'content' => $data['content'], 'featured_image' => $data['featured_image'], 'user_id' => $userId]  );
             }
         }
@@ -257,50 +258,82 @@ class CrawController extends Controller {
             'referer' => true,
             'cookies' => true,
         ] );
-        $imageOnMedia = $this->clientWp->post(
-            'media',
-            [
-                'multipart' => [
-                    [
-                        'name' => 'file',
-                        'contents' => file_get_contents( $featuredImageUrl ),
-                        'filename' => Str::random( 40 ).'.jpg',
+        if($featuredImageUrl && isset($featuredImageUrl)){
+            $imageOnMedia = $this->clientWp->post(
+                'media',
+                [
+                    'multipart' => [
+                        [
+                            'name' => 'file',
+                            'contents' => file_get_contents( $featuredImageUrl ),
+                            'filename' => Str::random( 40 ).'.jpg',
+                        ],
                     ],
-                ],
-                'query' => [
-                    'status' => 'publish',
-                    'title' => 'blog góc lập trình',
-                    'comment_status' => 'closed',
-                    'ping_status' => 'closed',
-                    'alt_text' => 'blog góc lập trình',
-                    'description' => '',
-                    'caption' => '',
-                ],
-            ]
-        );
-        $media = json_decode( $imageOnMedia->getBody(), true );
-        $post = $this->clientWp->post(
-            'posts',
-            [
-                'multipart' => [
-                    [
-                        'name' => 'title',
-                        'contents' => $title,
+                    'query' => [
+                        'status' => 'publish',
+                        'title' => 'blog góc lập trình',
+                        'comment_status' => 'closed',
+                        'ping_status' => 'closed',
+                        'alt_text' => 'blog góc lập trình',
+                        'description' => '',
+                        'caption' => '',
                     ],
-                    [
-                        'name' => 'content',
-                        'contents' => $content,
+                ]
+            );
+            $media = json_decode( $imageOnMedia->getBody(), true );
+        }else{
+            $media = 0;
+        }
+        
+        if($media && $media > 0){
+            $post = $this->clientWp->post(
+                'posts',
+                [
+                    'multipart' => [
+                        [
+                            'name' => 'title',
+                            'contents' => $title,
+                        ],
+                        [
+                            'name' => 'content',
+                            'contents' => $content,
+                        ],
+                        [
+                            'name' => 'featured_media',
+                            'contents' => $media['id'],
+                        ],
                     ],
-                    [
-                        'name' => 'featured_media',
-                        'contents' => $media['id'],
+                    'query' => [
+                        'status' => 'draft',
                     ],
-                ],
-                'query' => [
-                    'status' => 'draft',
-                ],
-            ]
-        );
+                ]
+            );
+        }else{
+            $post = $this->clientWp->post(
+                'posts',
+                [
+                    'multipart' => [
+                        [
+                            'name' => 'title',
+                            'contents' => $title,
+                        ],
+                        [
+                            'name' => 'content',
+                            'contents' => $content,
+                        ],
+                        // [
+                        //     'name' => 'featured_media',
+                        //     'contents' => $media['id'],
+                        // ],
+                    ],
+                    'query' => [
+                        'status' => 'draft',
+                    ],
+                ]
+            );
+        }
+        
+        
     }
 
     protected function loginWpCongThucNauAn() {
