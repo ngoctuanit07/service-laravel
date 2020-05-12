@@ -25,7 +25,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
-                            User
+                            {{ __('app.User') }}
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
@@ -39,7 +39,7 @@
                         <li class="nav-item has-treeview">
                             <a href="{{ route('profile.index') }}" class="nav-link">
                                 <i class="fas fa-list-ul nav-icon"></i>
-                                <p>Profile</p>
+                                <p> {{ __('app.Profile') }}</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -56,7 +56,7 @@
                                                      document.getElementById('logout-form').submit();">
                                 <i class="nav-icon fas fa-sign-out-alt"></i>
 
-                                <p> {{ __('Logout') }}</p>
+                                <p> {{ __('app.Logout') }}</p>
                             </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
@@ -69,7 +69,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-user-tag"></i>
                         <p>
-                            Role
+                           {{ __('app.Role') }} 
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
@@ -78,7 +78,7 @@
 
                             <a href="{{ route('roles.index') }}" class="nav-link">
                                 <i class="fas fa-list-ul nav-icon"></i>
-                                <p>List Role</p>
+                                <p>  {{ __('app.ListRole') }} </p>
                             </a>
 
 
@@ -89,7 +89,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-user-tag"></i>
                         <p>
-                            Permission
+                            {{ __('app.Permission') }}
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
@@ -97,7 +97,7 @@
                         <li class="nav-item">
                             <a href="{{ route('permission.index') }}" class="nav-link">
                                 <i class="fas fa-list-ul nav-icon"></i>
-                                <p>List Permission</p>
+                                <p>  {{ __('app.ListPermission') }}</p>
                             </a>
                         </li>
                     </ul>
@@ -106,7 +106,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-user-tag"></i>
                         <p>
-                            Craw
+                             {{ __('app.Crawdata') }}
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
@@ -114,15 +114,15 @@
                         <li class="nav-item">
                             <a href="{{ route('config.index') }}" class="nav-link">
                                 <i class="fas fa-list-ul nav-icon"></i>
-                                <p>Config Craw Auto</p>
+                                <p>   {{ __('app.ConfigCrawAuto') }}</p>
                             </a>
                             <a href="{{ route('craw.index') }}" class="nav-link">
                                 <i class="fas fa-list-ul nav-icon"></i>
-                                <p>List Craw Data</p>
+                                <p> {{ __('app.ListCrawData') }}</p>
                             </a>
                             <a href="{{ route('crawcat.index') }}" class="nav-link">
                                 <i class="fas fa-list-ul nav-icon"></i>
-                                <p>CrawCat Data</p>
+                                <p>{{ __('app.CrawCatData') }}</p>
                             </a>
                         </li>
                     </ul>
@@ -141,7 +141,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
-                            User
+                           {{ __('app.User') }}
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
@@ -156,7 +156,7 @@
                         <li class="nav-item has-treeview">
                             <a href="{{ route('profile.index') }}" class="nav-link">
                                 <i class="fas fa-list-ul nav-icon"></i>
-                                <p>Profile</p>
+                                <p>   {{ __('app.Profile') }}</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -164,7 +164,7 @@
                                                      document.getElementById('logout-form').submit();">
                                 <i class="nav-icon fas fa-sign-out-alt"></i>
 
-                                <p> {{ __('Logout') }}</p>
+                                <p> {{ __('app.Logout') }}</p>
                             </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
@@ -173,7 +173,8 @@
 
                     </ul>
                 </li>
-                <li class="nav-item has-treeview">
+                
+                {{-- <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-user-tag"></i>
                         <p>
@@ -189,11 +190,36 @@
                             </a>
                         </li>
                     </ul>
+                </li> --}}
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-user-tag"></i>
+                        <p>
+                             {{ __('app.Crawdata') }}
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            {{-- <a href="{{ route('config.index') }}" class="nav-link">
+                                <i class="fas fa-list-ul nav-icon"></i>
+                                <p>   {{ __('app.ConfigCrawAuto') }}</p>
+                            </a> --}}
+                            <a href="{{ route('craw.index') }}" class="nav-link">
+                                <i class="fas fa-list-ul nav-icon"></i>
+                                <p> {{ __('app.ListCrawData') }}</p>
+                            </a>
+                            {{-- <a href="{{ route('crawcat.index') }}" class="nav-link">
+                                <i class="fas fa-list-ul nav-icon"></i>
+                                <p>{{ __('app.CrawCatData') }}</p>
+                            </a> --}}
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item has-treeview">
                     <a href="{{ route('document.index') }}" class="nav-link">
                         <i class="fas fa-list-ul nav-icon"></i>
-                        <p>Document setup tool</p>
+                        <p>{{ __('app.Documentsetuptool') }}</p>
                     </a>
                 </li>
             </ul>
