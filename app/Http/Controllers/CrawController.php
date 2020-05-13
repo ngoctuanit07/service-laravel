@@ -1,15 +1,16 @@
 <?php
 /**
-* DISCLAIMER
+* DISCLAIMER.
 *
 * Do not edit or add to this file if you wish to upgrade john theme to newer
 * versions in the future.
 *
 * @category    Craw
-* @package     Craw data
+*
 * @author      John Nguyen
 * @copyright   Copyright ( c ) John Nguyen
 */
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -50,7 +51,7 @@ class CrawController extends Controller {
         $user = Auth::user();
         $userId = $user->id;
 
-        $craws = Craw::orderBy( 'id', 'DESC' )->where('user_id',$userId)->paginate( 15 );
+        $craws = Craw::orderBy( 'id', 'DESC' )->where( 'user_id', $userId )->paginate( 15 );
 
         return view( 'craw.index', compact( 'craws' ) )
         ->with( 'i', ( $request->input( 'page', 1 ) - 1 ) * 15 );
@@ -93,10 +94,13 @@ class CrawController extends Controller {
         $user = Auth::user();
         $userId = $user->id;
         $resultDatas = $this->getCrawlerContent( $url, $contentfull, $title, $content, $featured_image );
-      
+
         foreach ( $resultDatas as $data ) {
             if ( isset( $data['title'] ) && $data['title'] && isset( $data['content'] ) && $data['content'] ) {
-                Craw::create( ['title' => $data['title'], 'content' => $data['content'], 'featured_image' => $data['featured_image'], 'user_id' => $userId]  );
+                if ( $obj->auto_post == 1 ) {
+                    $this->importPostWp( $data['featured_image'], $data['title'], $data['content'] );
+                }
+                Craw::create( ['title' => $data['title'], 'content' => $data['content'], 'featured_image' => $data['featured_image'], 'user_id' => $userId,  'auto_post' => $obj->auto_post] );
             }
         }
 
@@ -118,11 +122,16 @@ class CrawController extends Controller {
         $craw->title = $request->input( 'title' );
         $craw->content = $request->input( 'content' );
         $craw->featured_image = $request->input( 'featured_image' );
+        $craw->auto_post = $request->input( 'auto_post' );
         $craw->save();
+        if ( $request->input( 'auto_post' ) == 1 ) {
+            $this->importPostWp( $request->input( 'featured_image' ), $request->input( 'title' ), $request->input( 'content' ) );
+        }
 
         return redirect()->route( 'craw.index' )
         ->with( 'success', 'Craw updated successfully' );
     }
+
     public function destroy( $id ) {
         Craw::find( $id )->delete();
 
@@ -234,7 +243,6 @@ class CrawController extends Controller {
     }
 
     protected function importPostWp( $featuredImageUrl, $title, $content ) {
-
         $user = Auth::user();
         $token = '';
         if ( $user->token && isset( $user->token ) ) {
@@ -246,7 +254,7 @@ class CrawController extends Controller {
         $this->clientWp = new Client( [
             'timeout' => 1000,
             'verify' => false,
-            'base_uri' =>  $website.'/wp-json/wp/v2/',
+            'base_uri' => $website.'/wp-json/wp/v2/',
             'headers' => [
                 'User-Agent' => 'johnsystem/v1.0',
                 'Authorization' => 'Bearer '.$token,
@@ -258,7 +266,7 @@ class CrawController extends Controller {
             'referer' => true,
             'cookies' => true,
         ] );
-        if($featuredImageUrl && isset($featuredImageUrl)){
+        if ( $featuredImageUrl && isset( $featuredImageUrl ) ) {
             $imageOnMedia = $this->clientWp->post(
                 'media',
                 [
@@ -281,11 +289,11 @@ class CrawController extends Controller {
                 ]
             );
             $media = json_decode( $imageOnMedia->getBody(), true );
-        }else{
+        } else {
             $media = 0;
         }
-        
-        if($media && $media > 0){
+
+        if ( $media && $media > 0 ) {
             $post = $this->clientWp->post(
                 'posts',
                 [
@@ -308,7 +316,7 @@ class CrawController extends Controller {
                     ],
                 ]
             );
-        }else{
+        } else {
             $post = $this->clientWp->post(
                 'posts',
                 [
@@ -332,8 +340,6 @@ class CrawController extends Controller {
                 ]
             );
         }
-        
-        
     }
 
     protected function loginWpCongThucNauAn() {
@@ -344,7 +350,7 @@ class CrawController extends Controller {
             'cookies' => true,
             'request.options' => [
                 'proxy' => 'tcp://117.2.82.96:53988',
-            ]
+            ],
         ] );
         $login = $this->client->post(
             'jwt-auth/v1/token',

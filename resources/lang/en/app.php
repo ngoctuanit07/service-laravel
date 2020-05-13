@@ -51,5 +51,6 @@ return [
     'UsersManagement' => 'Quản lý người dùng',
     'CreateNewUser' => 'Thêm mới người dùng',
     'ProfileManagement' => 'Quản lý thông tin cá nhân',
-    'EditProfile' => 'Cập nhật thông tin cá nhân'
+    'EditProfile' => 'Cập nhật thông tin cá nhân',
+    'AutoPost' => 'Tự động đăng'
 ];

@@ -60,6 +60,13 @@
                         {!! Form::text('featured_image', null, array('placeholder' => 'Featured image','class' => 'form-control')) !!}
                     </div>
                 </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>{{ __('app.AutoPost') }}:</strong>
+
+                        {!!Form::select('auto_post', array('0' => 'Tắt', '1' => 'Bật'), '0')!!}
+                    </div>
+                </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
