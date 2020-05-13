@@ -44,7 +44,7 @@
                         @endcan
                         @can('delete_config')
                         {!! Form::open(['method' => 'DELETE','route' => ['config.destroy', $config->id],'style'=>'display:inline']) !!}
-                        <button class="btn btn-primary" type="submit">{{ __('app.Delete') }}</button>
+                        <button class="btn btn-danger" type="submit">{{ __('app.Delete') }}</button>
                         {{-- {!! Form::submit({{ __('app.Delete') }}, ['class' => 'btn btn-danger']) !!} --}}
                         {!! Form::close() !!}
                         @endcan

@@ -9,7 +9,7 @@
                 <h2>{{ __('app.CreateNewConfig') }}</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('craw.index') }}"> {{ __('app.Back') }}</a>
+                <a class="btn btn-primary" href="{{ route('config.index') }}"> {{ __('app.Back') }}</a>
             </div>
         </div>
     </div>

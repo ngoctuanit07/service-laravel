@@ -36,9 +36,20 @@ return [
     'Url' => 'Đường dẫn Website',
     'Sitemap' => 'Đường dẫn sitemap',
     'DivContent' => 'Class bao nội dung',
-    'Title'=> 'Class title',
+    'Title' => 'Class title',
     'Content' => 'Class nội dung',
     'Continuity' => 'Lấy liên tục',
     'Image' => 'Class hình ảnh',
-    'Submit' => 'Lưu'
+    'Submit' => 'Lưu',
+    'CreateNewUser' => 'Tạo mới user',
+    'Name' => 'Tên',
+    'Email' => 'Email',
+    'WebsiteWordpress' => 'Website Wordpress',
+    'ConfirmPassword' => 'Xác nhận mật khẩu',
+    'Password' => 'Mật khẩu',
+    'TokenWordpress' => 'Token Wordpresss',
+    'UsersManagement' => 'Quản lý người dùng',
+    'CreateNewUser' => 'Thêm mới người dùng',
+    'ProfileManagement' => 'Quản lý thông tin cá nhân',
+    'EditProfile' => 'Cập nhật thông tin cá nhân'
 ];

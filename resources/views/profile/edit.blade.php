@@ -4,10 +4,10 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Edit Profile</h2>
+                <h2>{{ __('app.EditProfile') }}</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('profile.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('profile.index') }}"> {{ __('app.Back') }}</a>
             </div>
         </div>
     </div>
@@ -29,37 +29,37 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Name:</strong>
+                <strong>{{ __('app.Name') }}:</strong>
                 {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Email:</strong>
+                <strong>{{ __('app.Email') }}:</strong>
                 {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Website Wordpress:</strong>
+                <strong>{{ __('app.WebsiteWordpress') }}:</strong>
                 {!! Form::text('website', null, array('placeholder' => 'Website Wordpress','class' => 'form-control')) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Token Wordpress:</strong>
+                <strong>{{ __('app.TokenWordpress') }}:</strong>
                 {!! Form::text('token', null, array('placeholder' => 'Token Wordpress','class' => 'form-control')) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Password:</strong>
+                <strong>{{ __('app.Password') }}:</strong>
                 {!! Form::password('password', array('placeholder' => 'Password','class' => 'form-control')) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Confirm Password:</strong>
+                <strong>{{ __('app.ConfirmPassword') }}:</strong>
                 {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
             </div>
         </div>
@@ -70,7 +70,7 @@
         </div>
     </div> --}}
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">{{ __('app.Submit') }}</button>
         </div>
     </div>
     {!! Form::close() !!}
