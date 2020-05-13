@@ -22,7 +22,7 @@ Route::resource('testxml', 'TestController');
 // Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::post('admin/dongbo/{id}', 'CrawController@dongbo')->name('admin.dongbo');
-    Route::post('admin/import/{id}', 'ConfigController@c')->name('admin.import');
+    Route::post('admin/import/{id}', 'ConfigController@import')->name('admin.import');
     Route::resource('admin/users', 'UserController');
     Route::resource('admin/roles', 'RoleController');
     Route::resource('admin/craw', 'CrawController');

@@ -32,7 +32,19 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
-                        <strong>Title:</strong>
+                        <strong>Url:</strong>
+                        {!! Form::text('cat_url', null, array('placeholder' => 'Url Web','class' => 'form-control')) !!}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Sitemap:</strong>
+                        {!! Form::text('sitemap', null, array('placeholder' => 'Sitemap','class' => 'form-control')) !!}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Contentfull:</strong>
                         {!! Form::text('contentfull', null, array('placeholder' => 'Config parent','class' => 'form-control')) !!}
                     </div>
                 </div>
@@ -40,6 +52,13 @@
                     <div class="form-group">
                         <strong>Title:</strong>
                         {!! Form::text('title', null, array('placeholder' => 'Title','class' => 'form-control')) !!}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Continuity:</strong>
+                      
+                        {!!Form::select('continuity', array('0' => 'Tắt', '1' => 'Bật'), $configs->continuity)!!}
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12">

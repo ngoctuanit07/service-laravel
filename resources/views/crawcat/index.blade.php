@@ -6,14 +6,14 @@
             <div class="pull-left">
                 <h2>CrawCat Management</h2>
             </div>
-            <div class="pull-right">
+            {{-- <div class="pull-right">
                 @can('craw-create')
                 <a class="btn btn-success" href="{{ route('crawcat.create') }}"> Create New craw</a>
                 @endcan
                  {!! Form::open(['method' => 'GET','route' => ['admin.importCat'],'style'=>'display:inline']) !!}
                         {!! Form::submit('Craw Data For Cat', ['class' => 'btn btn-danger']) !!}
                         {!! Form::close() !!}
-            </div>
+            </div> --}}
         </div>
     </div>
 
@@ -37,8 +37,8 @@
                     <td>{{ ++$i }}</td>
                     <td>{{ $craw->title }}</td>
                     <td class="text-center">
-                        @can('craw-edit')
-                        <a class="btn btn-primary" href="{{ route('craw.edit',$craw->id) }}">Edit</a>
+                        @can('edit_crawcat')
+                        <a class="btn btn-primary" href="{{ route('crawcat.edit',$craw->id) }}">Edit</a>
                         @endcan
                         @can('craw-sync')
                         {!! Form::open(['method' => 'POST','route' => ['admin.dongbo', $craw->id],'style'=>'display:inline']) !!}
@@ -46,7 +46,7 @@
                         {!! Form::close() !!}
                         @endcan
                         @can('craw-delete')
-                        {!! Form::open(['method' => 'DELETE','route' => ['craw.destroy', $craw->id],'style'=>'display:inline']) !!}
+                        {!! Form::open(['method' => 'DELETE','route' => ['crawcat.destroy', $craw->id],'style'=>'display:inline']) !!}
                         {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                         {!! Form::close() !!}
                         @endcan

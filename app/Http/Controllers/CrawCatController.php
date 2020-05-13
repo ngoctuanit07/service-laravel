@@ -321,7 +321,7 @@ class CrawCatController extends Controller
      */
     public function dongbo($id)
     {
-        $datas = DB::table('craw')->where('id', $id)->get()->toArray();
+        $datas = DB::table('crawcat')->where('id', $id)->get()->toArray();
         foreach ($datas as $key => $item) {
             if ($item->cat_id == 1) {
                 $this->importPostWp($item->featured_image, $item->title, $item->content);

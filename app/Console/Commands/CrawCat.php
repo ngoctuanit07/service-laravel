@@ -8,6 +8,7 @@ use App\ConfigCrawCat;
 use Symfony\Component\DomCrawler\Crawler;
 use GuzzleHttp\Client;
 use DB;
+
 class CrawCat extends Command
 {
     /**
@@ -37,7 +38,7 @@ class CrawCat extends Command
             'timeout' => 1000,
             'verify' => false,
             'request.options' => [
-                'proxy' => 'tcp://113.160.234.147:47469',
+                'proxy' => 'tcp://222.252.12.76:1080',
             ],
         ]);
     }
@@ -57,12 +58,60 @@ class CrawCat extends Command
                 $imageUrl = $configcat->featured_image;
                 $contentFull = $configcat->contentfull;
                 $url = $configcat->cat_url;
-                $this->crawCat($url, $contentFull, $title, $content, $imageUrl, $configcat->user_id);
+                $continuity = $configcat->continuity;
+                $sitemap = $configcat->sitemap;
+                if ($configcat->sitemap && isset($configcat->sitemap)) {
+                    $this->crawDataFromSitemap($url, $sitemap, $contentFull, $title, $content, $imageUrl, $configcat->user_id,  $continuity);
+                } else {
+                    $this->crawCat($url, $contentFull, $title, $content, $imageUrl, $configcat->user_id,  $continuity);
+                }
             }
         }
     }
 
-    protected function crawCat($url, $contentFull, $title, $contentCraw, $imageUrl, $userId)
+    protected function crawDataFromSitemap($url, $sitemap, $contentFull, $title, $content, $imageUrl, $urserId,$continuity)
+    {
+        $xml = simplexml_load_file($sitemap);
+        $count = count($xml);
+        $count2 = 0;
+        foreach ($xml as $name) {
+            if ($name->loc == $url) {
+                continue;
+            } else {
+                $parentContent = $contentFull;
+                $title = $title;
+                $content = $content;
+                $featured_image = $imageUrl;
+                $resultData = $this->getCrawlerContent((string) $name->loc, $parentContent, $title, $content, $featured_image);
+                foreach ($resultData as $key => $data) {
+                    if (isset($data['title']) && $data['title'] && isset($data['content']) && $data['content'] && isset($data['featured_image']) && $data['featured_image']) {
+                        $crawDataCheck = DB::table('crawcat')->where('title', $data['title'])->first();
+                        if ($crawDataCheck && isset($crawDataCheck)) {
+                            break;
+                        } else {
+                            CrawCategory::create([ 'cat_url' => "",'title' => $data['title'], 'content' => $data['content'], 'featured_image' => $data['featured_image'],  'user_id' => $urserId]);
+                            $count2++;
+                            sleep(60);
+                        }
+                    }
+                }
+            }
+        }
+        if ($count == $count2) {
+            if(  $continuity != 0){
+                DB::table('configcrawcat')
+                ->where('user_id', $userId)
+                ->update(['status' => 1]);
+            }else{
+                DB::table('configcrawcat')
+                ->where('user_id', $userId)
+                ->update(['status' => 0]);
+            }
+            
+        }
+    }
+
+    protected function crawCat($url, $contentFull, $title, $contentCraw, $imageUrl, $userId,  $continuity)
     {
         $catUrls = $this->getUrls($url);
         $count = count($catUrls);
@@ -75,17 +124,24 @@ class CrawCat extends Command
                     if ($crawDataCheck && isset($crawDataCheck)) {
                         break;
                     } else {
-                        CrawCategory::create(['title' => $data['title'], 'content' => $data['content'], 'featured_image' => $data['featured_image'], 'user_id' => $userId, 'cat_url' => $url]);   
+                        CrawCategory::create(['title' => $data['title'], 'content' => $data['content'], 'featured_image' => $data['featured_image'], 'user_id' => $userId, 'cat_url' => $url]);
                     }
                 }
             }
-            $count2++;
+            ++$count2;
             sleep(60);
         }
-        if($count == $count2){
-                 DB::table('configcrawcat')
-                    ->where('user_id', $userId)
-                    ->update(['status' => 0]);
+        if ($count == $count2) {
+            if(  $continuity != 0){
+                DB::table('configcrawcat')
+                ->where('user_id', $userId)
+                ->update(['status' => 1]);
+            }else{
+                DB::table('configcrawcat')
+                ->where('user_id', $userId)
+                ->update(['status' => 0]);
+            }
+            
         }
     }
 

@@ -9,7 +9,7 @@
                 <h2>Edit Craw Data</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('craw.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('crawcat.index') }}"> Back</a>
             </div>
         </div>
     </div>
@@ -28,7 +28,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            {!! Form::model($craws, ['method' => 'PATCH','route' => ['craw.update', $craws->id]]) !!}
+            {!! Form::model($craws, ['method' => 'PATCH','route' => ['crawcat.update', $craws->id]]) !!}
             <div class="row">
                  <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
