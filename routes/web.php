@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect('/login');
 });
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth', 'role:admin']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
 
 Auth::routes();
 Route::resource('testxml', 'TestController');

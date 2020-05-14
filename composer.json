@@ -20,7 +20,8 @@
         "orchestra/parser": "^5.0",
         "spatie/laravel-permission": "^3.11",
         "symfony/dom-crawler": "^5.0",
-        "tymon/jwt-auth": "^1.0.0"
+        "tymon/jwt-auth": "^1.0.0",
+        "unisharp/laravel-filemanager": "^2.1"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
