@@ -63,7 +63,7 @@ class ConfigController extends Controller
     {
         $arrJson = $request->post();
         $obj = (object) $arrJson;
-        $url = $obj->cat_url;
+        $url = $obj->url;
         $sitemap = $obj->sitemap;
         $continuity = $obj->continuity;
         $contentfull = $obj->contentfull;

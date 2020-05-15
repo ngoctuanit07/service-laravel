@@ -28,7 +28,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            {!! Form::open(array('route' => 'craw.store','method'=>'POST')) !!}
+            {!! Form::open(array('route' => 'config.store','method'=>'POST')) !!}
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">

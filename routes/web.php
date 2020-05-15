@@ -25,6 +25,7 @@ Route::resource('testxml', 'TestController');
 // Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::post('admin/dongbo/{id}', 'CrawController@dongbo')->name('admin.dongbo');
+    Route::post('admin/sync/{id}', 'CrawCatController@sync')->name('admin.sync');
     Route::post('admin/import/{id}', 'ConfigController@import')->name('admin.import');
     Route::resource('admin/users', 'UserController');
     Route::resource('admin/roles', 'RoleController');
@@ -46,5 +47,9 @@ Route::group(['middleware' => ['auth', 'role:user']], function () {
     Route::resource('admin/document', 'DocumentController');
     Route::resource('admin/profile', 'ProfileController');
     Route::get('admin/home', 'DashboardController@index')->name('home.dashboard');
+    Route::post('admin/sync/{id}', 'CrawCatController@sync')->name('admin.sync');
+    Route::post('admin/import/{id}', 'ConfigController@import')->name('admin.import');
+    Route::resource('admin/crawcat', 'CrawCatController');
+    Route::resource('admin/config', 'ConfigController');
     // Route::get('admin/document','DocumentController@index')->name('admin.document');
 });

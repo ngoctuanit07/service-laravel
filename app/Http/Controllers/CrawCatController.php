@@ -319,17 +319,11 @@ class CrawCatController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function dongbo($id)
+    public function sync($id)
     {
         $datas = DB::table('crawcat')->where('id', $id)->get()->toArray();
         foreach ($datas as $key => $item) {
-            if ($item->cat_id == 1) {
-                $this->importPostWp($item->featured_image, $item->title, $item->content);
-            } elseif ($item->cat_id == 2) {
-                $this->importPostWpCongThucNauAn($item->featured_image, $item->title, $item->content);
-            } else {
-                $this->importPostWp($item->featured_image, $item->title, $item->content);
-            }
+            $this->importPostWp($item->featured_image, $item->title, $item->content);
         }
 
         return redirect()->route('crawcat.index')

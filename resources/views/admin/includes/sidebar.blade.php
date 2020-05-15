@@ -201,18 +201,18 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            {{-- <a href="{{ route('config.index') }}" class="nav-link">
+                            <a href="{{ route('config.index') }}" class="nav-link">
                                 <i class="fas fa-list-ul nav-icon"></i>
                                 <p>   {{ __('app.ConfigCrawAuto') }}</p>
-                            </a> --}}
+                            </a>
                             <a href="{{ route('craw.index') }}" class="nav-link">
                                 <i class="fas fa-list-ul nav-icon"></i>
                                 <p> {{ __('app.ListCrawData') }}</p>
                             </a>
-                            {{-- <a href="{{ route('crawcat.index') }}" class="nav-link">
+                            <a href="{{ route('crawcat.index') }}" class="nav-link">
                                 <i class="fas fa-list-ul nav-icon"></i>
                                 <p>{{ __('app.CrawCatData') }}</p>
-                            </a> --}}
+                            </a>
                         </li>
                     </ul>
                 </li>

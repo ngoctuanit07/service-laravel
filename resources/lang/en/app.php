@@ -52,5 +52,6 @@ return [
     'CreateNewUser' => 'Thêm mới người dùng',
     'ProfileManagement' => 'Quản lý thông tin cá nhân',
     'EditProfile' => 'Cập nhật thông tin cá nhân',
-    'AutoPost' => 'Tự động đăng'
+    'AutoPost' => 'Tự động đăng',
+    'EditNewUser' => 'Chỉnh sửa người dùng',
 ];

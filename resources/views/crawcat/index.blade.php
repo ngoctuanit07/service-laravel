@@ -41,7 +41,7 @@
                         <a class="btn btn-primary" href="{{ route('crawcat.edit',$craw->id) }}">Edit</a>
                         @endcan
                         @can('craw-sync')
-                        {!! Form::open(['method' => 'POST','route' => ['admin.dongbo', $craw->id],'style'=>'display:inline']) !!}
+                        {!! Form::open(['method' => 'POST','route' => ['admin.sync', $craw->id],'style'=>'display:inline']) !!}
                         {!! Form::submit('Sync Wordpresss', ['class' => 'btn btn-primary']) !!}
                         {!! Form::close() !!}
                         @endcan
