@@ -243,7 +243,7 @@ class CrawCatController extends Controller
 
     public function destroy($id)
     {
-        Craw::find($id)->delete();
+        CrawCat::find($id)->delete();
 
         return redirect()->route('crawcat.index')
         ->with('success', 'CrawCat deleted successfully');
