@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 use App\Services\KeywordsFetcher;
 use Illuminate\Console\Command;
-
+use DB;
 class FetchCommand extends Command {
     /**
     * The name and signature of the console command.
@@ -38,9 +38,21 @@ class FetchCommand extends Command {
     public function handle() {
         //
         //require base_path('Services/KeywordsFetcher');
-        $fetcher = new KeywordsFetcher(\Config::get('laravel-google-keywords'));
-        $fetcher->fetchAll();
-
-        $this->info("Command executed.");
+        $datas = DB::table('config_tracking_keyword')->where('status',1)->get();
+        foreach($datas as $data){
+            //dd($data);
+            $params = ['websites' => [
+                [
+                    'url' =>  $data->url,
+                    'credentials' => storage_path( 'app/'.$data->credentials),
+                    'user_id' => $data->user_id
+                ],
+            ]];
+            $fetcher = new KeywordsFetcher($params);
+            $fetcher->fetchAll();
+    
+            $this->info("Command executed.");
+        }
+      
     }
 }

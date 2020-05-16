@@ -1,41 +1,38 @@
-<?php 
+<?php
 
 namespace App\Services;
 
-use Carbon\Carbon;
 use App\GoogleKeyword;
 use Illuminate\Database\QueryException;
 
 class KeywordsSaver
 {
+    public function saveResults($url, $results, $userId)
+    {
+        try {
+            foreach ($results as $result) {
+                GoogleKeyword::create([
+                    'url' => $url,
+                    'keyword' => $this->getKeyword($result),
+                    'date' => $this->getDate($result),
+                    'clicks' => $result->clicks,
+                    'impressions' => $result->impressions,
+                    'ctr' => $result->ctr,
+                    'avg_position' => $result->position,
+                    'user_id' => $userId,
+                ]);
+            }
+        } catch (QueryException $e) {
+        }
+    }
 
-	public function saveResults($url, $results)
-	{
-		try {				
-			foreach($results as $result) {
-				GoogleKeyword::create([
-					'url' => $url,
-					'keyword' => $this->getKeyword($result),
-					'date' => $this->getDate($result),
-					'clicks' => $result->clicks,
-					'impressions' => $result->impressions,
-					'ctr' => $result->ctr,
-					'avg_position' => $result->position,
-				]);
-			}
-		} catch (QueryException $e) {
+    protected function getKeyword($result)
+    {
+        return $result->keys[0];
+    }
 
-		}
-	}
-
-	protected function getKeyword($result)
-	{
-		return $result->keys[0];
-	}
-
-	protected function getDate($result)
-	{
-		return $result->keys[1];
-	}
-
+    protected function getDate($result)
+    {
+        return $result->keys[1];
+    }
 }

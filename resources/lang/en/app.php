@@ -54,4 +54,16 @@ return [
     'EditProfile' => 'Cập nhật thông tin cá nhân',
     'AutoPost' => 'Tự động đăng',
     'EditNewUser' => 'Chỉnh sửa người dùng',
+    'Trackingkeyword' => 'Theo dõi từ khóa',
+    'ReportRankKeyword' => 'Báo cáo  từ khóa',
+    'Trackingkeywordrankmanagement' => 'Theo dõi quản lý xếp hạng từ khóa',
+    'Keyword' => 'Từ khóa',
+    'TotalClick' => 'Số lần click',
+    'PossitionKeyword' => 'Vị trí của từ khóa',
+    'ConfigTrackingManagement'=> 'Cấu hình lấy dữ liệu từ khóa',
+    'url'=> 'Đường dẫn website',
+    'credentials'=> 'Quyền truy cập',
+    'status'=> 'Trạng thái',
+    'EditConfigData' => 'Chỉnh sửa cài đặt lấy dữ liệu từ khóa'
+
 ];
