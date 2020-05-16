@@ -53,5 +53,7 @@ Route::group(['middleware' => ['auth', 'role:user']], function () {
     Route::post('admin/import/{id}', 'ConfigController@import')->name('admin.import');
     Route::resource('admin/crawcat', 'CrawCatController');
     Route::resource('admin/config', 'ConfigController');
+    Route::resource('admin/tracking', 'TrackingKeywordController');
+    Route::resource('admin/configtracking', 'ConfigTrackingKeywordController');
     // Route::get('admin/document','DocumentController@index')->name('admin.document');
 });

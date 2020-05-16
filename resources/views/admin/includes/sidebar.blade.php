@@ -218,6 +218,29 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-user-tag"></i>
                         <p>
+                           {{ __('app.Trackingkeyword') }} 
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('configtracking.index') }}" class="nav-link">
+                                <i class="fas fa-list-ul nav-icon"></i>
+                                <p>  {{ __('app.ConfigTrackingManagement') }} </p>
+                            </a>
+                            <a href="{{ route('tracking.index') }}" class="nav-link">
+                                <i class="fas fa-list-ul nav-icon"></i>
+                                <p>  {{ __('app.ReportRankKeyword') }} </p>
+                            </a>
+
+
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-user-tag"></i>
+                        <p>
                              {{ __('app.Crawdata') }}
                             <i class="fas fa-angle-left right"></i>
                         </p>
