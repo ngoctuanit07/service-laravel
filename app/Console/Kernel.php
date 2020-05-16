@@ -25,7 +25,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('craw:cat')->everyMinute();
-        $schedule->command('keywords:fetch')->daily();
+        $schedule->command('keywords:fetch')->dailyAt('23:59');
     }
 
     /**
