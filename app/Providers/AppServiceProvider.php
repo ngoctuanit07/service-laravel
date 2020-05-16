@@ -14,6 +14,10 @@ class AppServiceProvider extends ServiceProvider {
 
     public function register() {
         //
+        // $this->app->singleton(\Services\KeywordsFetcher::class, function ($app) {
+        //     $client = new \Services\KeywordsFetcher();
+        //     return $client;
+        // });
     }
 
     /**
