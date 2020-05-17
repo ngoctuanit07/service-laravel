@@ -17,10 +17,6 @@ class ProfileController extends Controller
 
     public function __construct( User $user ) {
         $this->user = $user;
-        // $this->middleware( 'permission:profile-show|profile-create|profile-edit|profile-delete', ['only' => ['index', 'store']] );
-        // $this->middleware( 'permission:profile-create', ['only' => ['create', 'store']] );
-        // $this->middleware( 'permission:profile-edit', ['only' => ['edit', 'update']] );
-        // $this->middleware( 'permission:profile-delete', ['only' => ['destroy']] );
     }
     /**
     * Display a listing of the resource.
@@ -31,7 +27,7 @@ class ProfileController extends Controller
     public function index( Request $request ) {
         $user = Auth::user();
         $userId = $user->id;
-        $data = User::orderBy( 'id', 'DESC' )->where('id',$userId)->paginate( 5 );
+        $data = User::orderBy( 'created_at', 'DESC' )->where('id',$userId)->paginate( 5 );
 
         return view( 'profile.index', compact( 'data' ) )
         ->with( 'i', ( $request->input( 'page', 1 ) - 1 ) * 5 );

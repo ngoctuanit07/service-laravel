@@ -27,7 +27,7 @@ class ConfigController extends Controller
         $user = Auth::user();
         $userId = $user->id;
 
-        $configs = ConfigCrawCat::orderBy('id', 'DESC')->where('user_id', $userId)->paginate(15);
+        $configs = ConfigCrawCat::orderBy('created_at', 'DESC')->where('user_id', $userId)->paginate(15);
 
         return view('config.index', compact('configs'))
         ->with('i', ($request->input('page', 1) - 1) * 15);

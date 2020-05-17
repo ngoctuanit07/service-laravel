@@ -26,7 +26,7 @@ class ConfigTrackingKeywordController extends Controller
         $user = Auth::user();
         $userId = $user->id;
 
-        $configs = TrackingKeyword::orderBy('id', 'DESC')->where('user_id', $userId)->paginate(15);
+        $configs = TrackingKeyword::orderBy('created_at', 'DESC')->where('user_id', $userId)->paginate(15);
 
         return view('configtracking.index', compact('configs'))
         ->with('i', ($request->input('page', 1) - 1) * 15);
@@ -120,7 +120,7 @@ class ConfigTrackingKeywordController extends Controller
            $path = $request->file('credentials')->storeAs('/', $fileNameToStore);
 
            $credentials = $fileNameToStore;
-           $craw->credentials =  $credentials;
+           $config->credentials =  $credentials;
        }
         $config->save();
 

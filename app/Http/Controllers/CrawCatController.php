@@ -54,7 +54,7 @@ class CrawCatController extends Controller
         $user = Auth::user();
         $userId = $user->id;
 
-        $craws = CrawCat::orderBy('id', 'DESC')->where('user_id', $userId)->paginate(15);
+        $craws = CrawCat::orderBy('created_at', 'DESC')->where('user_id', $userId)->paginate(15);
 
         return view('crawcat.index', compact('craws'))
         ->with('i', ($request->input('page', 1) - 1) * 15);

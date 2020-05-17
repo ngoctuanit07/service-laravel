@@ -51,7 +51,7 @@ class CrawController extends Controller {
         $user = Auth::user();
         $userId = $user->id;
 
-        $craws = Craw::orderBy( 'id', 'DESC' )->where( 'user_id', $userId )->paginate( 15 );
+        $craws = Craw::orderBy( 'created_at', 'DESC' )->where( 'user_id', $userId )->paginate( 15 );
 
         return view( 'craw.index', compact( 'craws' ) )
         ->with( 'i', ( $request->input( 'page', 1 ) - 1 ) * 15 );

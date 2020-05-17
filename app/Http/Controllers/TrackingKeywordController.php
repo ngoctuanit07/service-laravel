@@ -21,7 +21,7 @@ class TrackingKeywordController extends Controller
         $user = Auth::user();
         $userId = $user->id;
 
-        $craws = GoogleKeyword::orderBy( 'id', 'DESC' )->where( 'user_id', $userId )->paginate( 15 );
+        $craws = GoogleKeyword::orderBy( 'created_at', 'DESC' )->where( 'user_id', $userId )->paginate( 15 );
 
         return view( 'trackingkeyword.index', compact( 'craws' ) )
         ->with( 'i', ( $request->input( 'page', 1 ) - 1 ) * 15 );
