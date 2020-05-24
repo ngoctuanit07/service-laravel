@@ -89,6 +89,26 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-user-tag"></i>
                         <p>
+                            {{ __('app.Proxy') }}
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                
+                            <a href="{{ route('proxy.index') }}" class="nav-link">
+                                <i class="fas fa-list-ul nav-icon"></i>
+                                <p> {{ __('app.ListProxy') }} </p>
+                            </a>
+                
+                
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-user-tag"></i>
+                        <p>
                            {{ __('app.Trackingkeyword') }} 
                             <i class="fas fa-angle-left right"></i>
                         </p>

@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         \App\Console\Commands\CrawCat::class,
         \App\Console\Commands\FetchCommand::class,
+        \App\Console\Commands\Proxy::class,
     ];
 
     /**
@@ -24,7 +25,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('craw:cat')->everyMinute();
+        $schedule->command('craw:cat')->monthlyOn(2, '22:10');
+        $schedule->command('proxy:update')->everyMinute();
         $schedule->command('keywords:fetch')->dailyAt('22:10');
     }
 
