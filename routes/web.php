@@ -30,6 +30,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::resource('admin/users', 'UserController');
     Route::resource('admin/roles', 'RoleController');
     Route::resource('admin/craw', 'CrawController');
+    Route::resource('admin/proxy', 'ProxyController');
     Route::resource('admin/tracking', 'TrackingKeywordController');
     Route::resource('admin/configtracking', 'ConfigTrackingKeywordController');
     Route::resource('admin/crawcat', 'CrawCatController');

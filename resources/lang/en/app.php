@@ -64,6 +64,12 @@ return [
     'url'=> 'Đường dẫn website',
     'credentials'=> 'Quyền truy cập',
     'status'=> 'Trạng thái',
-    'EditConfigData' => 'Chỉnh sửa cài đặt lấy dữ liệu từ khóa'
+    'EditConfigData' => 'Chỉnh sửa cài đặt lấy dữ liệu từ khóa',
+    'ProxyManagement' => 'Quản lý proxy',
+    'CreateNewProxy' => 'Tạo mới proxy',
+    'urlpory' => 'Proxy',
+    'Proxy' => 'Proxy',
+    'ListProxy' => 'Danh sách proxy',
+    'EditProxy' => 'EditProxy'
 
 ];
