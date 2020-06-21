@@ -37,9 +37,6 @@ class CrawCat extends Command
         $this->client = new Client([
             'timeout' => 1000,
             'verify' => false,
-            'request.options' => [
-                'proxy' => 'tcp://222.252.12.76:1080',
-            ],
         ]);
     }
 
@@ -61,15 +58,15 @@ class CrawCat extends Command
                 $continuity = $configcat->continuity;
                 $sitemap = $configcat->sitemap;
                 if ($configcat->sitemap && isset($configcat->sitemap)) {
-                    $this->crawDataFromSitemap($url, $sitemap, $contentFull, $title, $content, $imageUrl, $configcat->user_id,  $continuity);
+                    $this->crawDataFromSitemap($url, $sitemap, $contentFull, $title, $content, $imageUrl, $configcat->user_id, $continuity);
                 } else {
-                    $this->crawCat($url, $contentFull, $title, $content, $imageUrl, $configcat->user_id,  $continuity);
+                    $this->crawCat($url, $contentFull, $title, $content, $imageUrl, $configcat->user_id, $continuity);
                 }
             }
         }
     }
 
-    protected function crawDataFromSitemap($url, $sitemap, $contentFull, $title, $content, $imageUrl, $urserId,$continuity)
+    protected function crawDataFromSitemap($url, $sitemap, $contentFull, $title, $content, $imageUrl, $urserId, $continuity)
     {
         $xml = simplexml_load_file($sitemap);
         $count = count($xml);
@@ -98,20 +95,19 @@ class CrawCat extends Command
             }
         }
         if ($count == $count2) {
-            if(  $continuity != 0){
+            if ($continuity != 0) {
                 DB::table('configcrawcat')
                 ->where('user_id', $userId)
                 ->update(['status' => 1]);
-            }else{
+            } else {
                 DB::table('configcrawcat')
                 ->where('user_id', $userId)
                 ->update(['status' => 0]);
             }
-            
         }
     }
 
-    protected function crawCat($url, $contentFull, $title, $contentCraw, $imageUrl, $userId,  $continuity)
+    protected function crawCat($url, $contentFull, $title, $contentCraw, $imageUrl, $userId, $continuity)
     {
         $catUrls = $this->getUrls($url);
         $count = count($catUrls);
@@ -132,16 +128,15 @@ class CrawCat extends Command
             sleep(60);
         }
         if ($count == $count2) {
-            if(  $continuity != 0){
+            if ($continuity != 0) {
                 DB::table('configcrawcat')
                 ->where('user_id', $userId)
                 ->update(['status' => 1]);
-            }else{
+            } else {
                 DB::table('configcrawcat')
                 ->where('user_id', $userId)
                 ->update(['status' => 0]);
             }
-            
         }
     }
 
