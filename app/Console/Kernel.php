@@ -1,5 +1,15 @@
 <?php
-
+/**
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade john theme to newer
+ * versions in the future.
+ *
+ * @category    John
+ * @package     john theme
+ * @author      John Nguyen
+ * @copyright   Copyright (c) John Nguyen Team
+ */ 
 namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
@@ -37,7 +47,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }
