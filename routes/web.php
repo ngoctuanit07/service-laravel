@@ -58,3 +58,4 @@ Route::group(['middleware' => ['auth', 'role:user']], function () {
     Route::resource('admin/configtracking', 'ConfigTrackingKeywordController');
     // Route::get('admin/document','DocumentController@index')->name('admin.document');
 });
+Route::get('fee-ghtk', "GHTKControler@fee");
