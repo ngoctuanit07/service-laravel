@@ -58,8 +58,6 @@ class ApiController extends Controller
             ]
         );
         $bookData = json_decode($book->getBody() );
-        //Log::info(print_r($bookData,true));
-        //Log::info($bookData);
 
         $bookTotal = $this->client->post(
             'my/v1/bookingTotal',
