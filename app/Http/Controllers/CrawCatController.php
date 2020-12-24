@@ -325,7 +325,6 @@ class CrawCatController extends Controller
         foreach ($datas as $key => $item) {
             $this->importPostWp($item->featured_image, $item->title, $item->content);
         }
-        DB::table('crawcat')->where('id', '=', $id)->delete();
         return redirect()->route('crawcat.index')
         ->with('success', 'Craw Sync successfully');
     }
