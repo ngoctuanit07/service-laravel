@@ -42,12 +42,31 @@
                         {!! Form::text('contentfull', null, array('placeholder' => 'Div Parent','class' => 'form-control')) !!}
                     </div>
                 </div>
-                 <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Seotitle:</strong>
+                        {!! Form::text('seo_title', null, array('placeholder' => 'Title','class' => 'form-control')) !!}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>SeoDescription:</strong>
+                        {!! Form::text('seo_description', null, array('placeholder' => 'Title','class' => 'form-control')) !!}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>SeoKeyword:</strong>
+                        {!! Form::text('seo_keyword', null, array('placeholder' => 'Title','class' => 'form-control')) !!}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Title:</strong>
                         {!! Form::text('title', null, array('placeholder' => 'Title','class' => 'form-control')) !!}
                     </div>
                 </div>
+
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Content:</strong>
